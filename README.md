@@ -1,4 +1,4 @@
-# SecureSight CCTV Dashboard
+# SecureSight Dashboard
 
 **SecureSight** is a web-based dashboard for viewing and managing security incidents captured by CCTV cameras. It features a real-time incident list, a video player for reviewing footage, and a timeline for navigating through past events.
 
