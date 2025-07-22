@@ -1,57 +1,80 @@
 # SecureSight CCTV Dashboard
 
-SecureSight is a professional CCTV monitoring dashboard for detecting and managing security incidents across multiple camera feeds. This is a full-stack TypeScript application using modern web technologies.
+**SecureSight** is a web-based dashboard for viewing and managing security incidents captured by CCTV cameras. It features a real-time incident list, a video player for reviewing footage, and a timeline for navigating through past events.
+
+## Features
+
+-   **Incident List**: View a list of unresolved and resolved security incidents, including details like incident type, camera location, and time of occurrence.
+-   **Incident Player**: Watch video footage of selected incidents directly in the dashboard.
+-   **Incident Timeline**: Visualize the chronological order of all incidents and easily jump to specific events.
+-   **Resolve Incidents**: Mark incidents as resolved to keep track of ongoing and past threats.
+
+## Tech Stack
+
+-   **Frontend**: Next.js, React, TypeScript, Tailwind CSS, TanStack Query
+-   **Backend**: Node.js, Express, Prisma, Zod
+-   **Database**: PostgreSQL (or any other database supported by Prisma)
 
 ## Deployment Instructions
 
-To deploy this application, follow these steps:
+### Prerequisites
 
-1. **Clone the repository:**
-   ```sh
-   git clone https://github.com/your-username/securesight.git
-   ```
+-   Node.js (v18 or higher)
+-   pnpm
+-   PostgreSQL
 
-2. **Install dependencies:**
-   ```sh
-   pnpm install
-   ```
+### Setup
 
-3. **Set up the database:**
-   - Make sure you have Docker installed and running.
-   - Run the following command to start a PostgreSQL database:
-     ```sh
-     docker-compose up -d
-     ```
+1.  **Clone the repository:**
 
-4. **Run database migrations:**
-   ```sh
-   pnpm --filter server prisma migrate dev
-   ```
+    ```bash
+    git clone https://github.com/your-username/securesight.git
+    cd securesight
+    ```
 
-5. **Seed the database:**
-   ```sh
-   pnpm --filter server prisma:seed
-   ```
+2.  **Install dependencies:**
 
-6. **Start the development servers:**
-   ```sh
-   pnpm dev
-   ```
+    ```bash
+    pnpm install
+    ```
 
-## Tech Decisions
+3.  **Set up PostgreSQL:**
+    - Install PostgreSQL on your machine.
+    - Create a database for SecureSight.
 
-- **Monorepo:** We use Turborepo to manage our monorepo, which allows us to share code and configurations between our frontend and backend applications.
-- **Frontend:** We use Next.js with the App Router for our frontend, which provides a modern and flexible framework for building React applications. We use Tailwind CSS for styling, which allows us to create a professional and responsive design.
-- **Backend:** We use Express.js with TypeScript for our backend, which provides a robust and scalable framework for building APIs. We use Prisma as our ORM, which makes it easy to interact with our database.
-- **Database:** We use PostgreSQL for our database, which is a powerful and reliable open-source relational database.
-- **State Management:** We use React Query for managing our API state, which provides a simple and efficient way to fetch, cache, and update data.
-- **Validation:** We use Zod for request validation, which helps us ensure that our API receives the correct data.
+4.  **Set up environment variables:**
+
+    Create a `.env` file in the `apps/server` directory and update the `DATABASE_URL` with your PostgreSQL connection string:
+
+    ```
+    DATABASE_URL="postgresql://USER:PASSWORD@HOST:PORT/DATABASE"
+    ```
+
+5.  **Run database migrations:**
+
+    ```bash
+    pnpm --filter server prisma migrate dev
+    ```
+
+6.  **Seed the database with sample data:**
+
+    ```bash
+    pnpm --filter server prisma:seed
+    ```
+
+7.  **Start the development servers:**
+
+    ```bash
+    pnpm dev
+    ```
+
+    The web app will be available at `http://localhost:3000` and the server at `http://localhost:3002`.
 
 ## If I Had More Time...
 
-- **Real-time WebSocket updates:** We could use WebSockets to provide real-time updates to the dashboard, so that users can see new incidents as they happen.
-- **Advanced filtering and search:** We could add more advanced filtering and search options to the dashboard, so that users can easily find the incidents they are looking for.
-- **Incident analytics dashboard:** We could create an analytics dashboard to provide insights into the types of incidents that are occurring, the locations where they are most common, and other useful metrics.
-- **Mobile app companion:** We could create a mobile app companion to allow users to monitor their cameras and receive notifications on the go.
-- **Multi-user authentication:** We could add multi-user authentication to allow multiple users to access the dashboard with different levels of permissions.
-- **Advanced AI model integration:** We could integrate an advanced AI model to automatically detect and classify incidents, which would reduce the need for manual intervention.
+-   **Real-time WebSocket updates**: Implement WebSockets to provide real-time updates for new incidents and status changes.
+-   **Advanced filtering and search**: Add more advanced filtering and search capabilities to the incident list.
+-   **Incident analytics dashboard**: Create a dashboard with charts and graphs to visualize incident data.
+-   **Mobile app companion**: Develop a mobile app for viewing and managing incidents on the go.
+-   **Multi-user authentication**: Add user authentication and authorization to control access to the dashboard.
+-   **Advanced AI model integration**: Integrate more advanced AI models for improved incident detection and classification.
