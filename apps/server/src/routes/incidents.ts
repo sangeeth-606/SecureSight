@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { z } from 'zod';
 import prisma from '../lib/prisma';
 import { getIncidentsSchema, resolveIncidentSchema } from '../types/zod-schemas';
-import { type Incident, type Camera } from '@prisma/client';
+import type { Incident, Camera } from '@prisma/client';
 
 const router = Router();
 
