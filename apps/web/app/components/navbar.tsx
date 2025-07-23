@@ -16,7 +16,6 @@ const navItems = [
   { label: 'Scenes', icon: Square },
   { label: 'Incidents', icon: AlertTriangle },
   { label: 'Users', icon: Users },
-  { label: 'More', icon: MoreHorizontal, isMore: true },
 ];
 
 export function Navbar() {
@@ -27,11 +26,7 @@ export function Navbar() {
 
 
   function handleNavClick(item: any) {
-    if (item.isMore) {
-      alert('More features coming soon!');
-    } else {
-      alert(`${item.label} feature coming soon!`);
-    }
+    alert(`${item.label} feature coming soon!`);
   }
 
   return (
@@ -51,7 +46,6 @@ export function Navbar() {
                   key={item.label}
                   onClick={() => handleNavClick(item)}
                   className="flex items-center px-2 py-1 text-sm font-medium text-slate-200 hover:text-yellow-400 transition-colors focus:outline-none"
-                  style={{ background: item.isMore ? 'none' : undefined }}
                 >
                   <item.icon className="mr-1 h-4 w-4" />
                   {item.label}
