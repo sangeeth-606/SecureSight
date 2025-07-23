@@ -21,6 +21,9 @@ app.use(express.json());
 app.use(morgan('dev'));
 
 app.use('/api', incidentRoutes);
+app.get('/health', (req, res) => {
+  res.send('hello');
+});
 
 app.listen(3002, () => {
   console.log('Server running at http://localhost:3002');
