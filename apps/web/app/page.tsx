@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
+import { getBaseUrl } from './lib/baseUrl';
 import axios from 'axios';
 import { IncidentPlayer } from './components/incident-player';
 import { IncidentList } from './components/incident-list';
@@ -10,7 +11,7 @@ import { INCIDENT_LIST_MAX_HEIGHT, INCIDENT_LIST_MIN_HEIGHT } from './constants'
 import { IncidentWithCamera } from '../lib/types';
 
 async function getAllIncidents() {
-  const res = await axios.get('http://localhost:3002/api/incidents');
+  const res = await axios.get(`${getBaseUrl()}/api/incidents`);
   return res.data;
 }
 

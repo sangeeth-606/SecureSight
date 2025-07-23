@@ -6,6 +6,7 @@ import { formatDistanceToNow } from 'date-fns';
 import { Check, AlertTriangle, ShieldAlert, Video } from 'lucide-react';
 import { IncidentWithCamera } from '../../lib/types';
 import { IncidentCardSkeleton } from './ui/skeleton';
+import { getBaseUrl } from '../lib/baseUrl';
 import axios from 'axios';
 import "@fontsource/urbanist";
 import { INCIDENT_LIST_MAX_HEIGHT, INCIDENT_LIST_MIN_HEIGHT } from '../constants';
@@ -16,12 +17,12 @@ const incidentTypes: { [key: string]: { icon: React.ElementType; color: string }
 };
 
 async function getIncidents(resolved: boolean) {
-  const res = await axios.get(`http://localhost:3002/api/incidents?resolved=${resolved}`);
+  const res = await axios.get(`${getBaseUrl()}/api/incidents?resolved=${resolved}`);
   return res.data;
 }
 
 async function resolveIncident(id: string) {
-  const res = await axios.patch(`http://localhost:3002/api/incidents/${id}/resolve`);
+  const res = await axios.patch(`${getBaseUrl()}/api/incidents/${id}/resolve`);
   return res.data;
 }
 

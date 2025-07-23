@@ -2,14 +2,13 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { Shield, LayoutGrid, Video, Users, AlertTriangle, MoreHorizontal, Square, User } from 'lucide-react';
-import { useState } from 'react';
+// import { useState } from 'react';
+import { getBaseUrl } from '../lib/baseUrl';
+import axios from 'axios';
 
 async function getStats() {
-  const res = await fetch('http://localhost:3002/api/stats');
-  if (!res.ok) {
-    throw new Error('Network response was not ok');
-  }
-  return res.json();
+  const res = await axios.get(`${getBaseUrl()}/api/stats`);
+  return res.data;
 }
 
 const navItems = [
@@ -26,8 +25,8 @@ export function Navbar() {
     queryKey: ['stats'],
     queryFn: getStats,
   });
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalMsg, setModalMsg] = useState('');
+  // const [modalOpen, setModalOpen] = useState(false);
+  // const [modalMsg, setModalMsg] = useState('');
 
   function handleNavClick(item: any) {
     if (item.isMore) {
