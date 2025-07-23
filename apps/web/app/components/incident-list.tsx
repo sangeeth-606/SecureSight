@@ -2,8 +2,7 @@
 
 import { useState } from 'react';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { formatDistanceToNow } from 'date-fns';
-import { Check, AlertTriangle, ShieldAlert, Video } from 'lucide-react';
+import {  AlertTriangle, ShieldAlert } from 'lucide-react';
 import { IncidentWithCamera } from '../../lib/types';
 import { IncidentCardSkeleton } from './ui/skeleton';
 import { getBaseUrl } from '../lib/baseUrl';
@@ -34,7 +33,7 @@ export function IncidentList({ onIncidentSelect }: IncidentListProps) {
   const [showResolved, setShowResolved] = useState(false);
   const queryClient = useQueryClient();
 
-  // Fetch both unresolved and resolved for header counts
+
   const { data: unresolvedData, isLoading: isLoadingUnresolved } = useQuery({
     queryKey: ['incidents', false],
     queryFn: () => getIncidents(false),
@@ -44,7 +43,7 @@ export function IncidentList({ onIncidentSelect }: IncidentListProps) {
     queryFn: () => getIncidents(true),
   });
 
-  // Use correct data for list
+
   const data = showResolved ? resolvedData : unresolvedData;
   const isLoading = showResolved ? isLoadingResolved : isLoadingUnresolved;
 
@@ -53,7 +52,7 @@ export function IncidentList({ onIncidentSelect }: IncidentListProps) {
     onMutate: async (id: string) => {
       await queryClient.cancelQueries({ queryKey: ['incidents', showResolved] });
       const previousIncidents = queryClient.getQueryData(['incidents', showResolved]);
-      // Remove optimisticallyRemoved animation
+   
       queryClient.setQueryData(['incidents', showResolved], (old: any) => ({
         ...old,
         incidents: old.incidents.filter((i: any) => i.id !== id),
@@ -89,7 +88,7 @@ export function IncidentList({ onIncidentSelect }: IncidentListProps) {
 
   if (!data) return null;
 
-  // Header counts
+
   const unresolvedCount = unresolvedData?.incidents?.length || 0;
   const resolvedCount = resolvedData?.incidents?.length || 0;
 

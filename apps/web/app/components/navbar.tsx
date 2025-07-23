@@ -2,7 +2,6 @@
 
 import { useQuery } from '@tanstack/react-query';
 import { Shield, LayoutGrid, Video, Users, AlertTriangle, MoreHorizontal, Square, User } from 'lucide-react';
-// import { useState } from 'react';
 import { getBaseUrl } from '../lib/baseUrl';
 import axios from 'axios';
 
@@ -25,8 +24,7 @@ export function Navbar() {
     queryKey: ['stats'],
     queryFn: getStats,
   });
-  // const [modalOpen, setModalOpen] = useState(false);
-  // const [modalMsg, setModalMsg] = useState('');
+
 
   function handleNavClick(item: any) {
     if (item.isMore) {

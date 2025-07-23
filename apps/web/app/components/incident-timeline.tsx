@@ -13,7 +13,7 @@ export function IncidentTimeline({ incidents, onIncidentSelect }: IncidentTimeli
   const twentyFourHoursAgo = new Date(now.getTime() - 24 * 60 * 60 * 1000)
   const incidentsInTimeline = incidents.filter((i) => new Date(i.tsStart) > twentyFourHoursAgo)
 
-  // Group incidents by camera
+
   const cameras: { [cameraId: string]: { name: string, incidents: typeof incidents } } = {}
   incidentsInTimeline.forEach((incident) => {
     if (!incident.camera) return
@@ -50,7 +50,7 @@ export function IncidentTimeline({ incidents, onIncidentSelect }: IncidentTimeli
   }
 
   const getSeverityColor = (incident: IncidentWithCamera) => {
-    // You can customize this based on your incident severity logic
+  
     const colors = [
       "bg-red-500 border-red-400 shadow-red-500/50",
       "bg-yellow-500 border-yellow-400 shadow-yellow-500/50",
@@ -63,14 +63,20 @@ export function IncidentTimeline({ incidents, onIncidentSelect }: IncidentTimeli
   return (
     <div className="bg-[#19191c] rounded-2xl p-0 mt-6 border border-[#23262B] shadow-2xl overflow-hidden">
       {/* Player Controls */}
-      <div className="flex items-center gap-2 px-4 py-2 bg-[#19191c] border-b border-[#23262B] text-white">
-        <SkipBack className="w-4 h-4 opacity-70 cursor-pointer" />
-        <Play className="w-5 h-5 mx-1 cursor-pointer" />
-        <SkipForward className="w-4 h-4 opacity-70 cursor-pointer" />
-        <span className="ml-4 text-xs font-mono text-[#F9D923] bg-[#23262B] px-2 py-0.5 rounded">03:12:37 (15-Jun-2025)</span>
+      <div className="flex items-center gap-6 px-6 py-3 bg-black border-b border-[#23262B] text-white">
+        <SkipBack className="w-6 h-6 cursor-pointer" onClick={() => alert('This feature will be added soon.')} />
+        <SkipBack className="w-6 h-6 cursor-pointer" onClick={() => alert('This feature will be added soon.')} />
+        <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white cursor-pointer" onClick={() => alert('This feature will be added soon.') }>
+          <span className="flex items-center justify-center w-full h-full">
+            <Play className="w-6 h-6 text-black" fill="black" style={{ display: 'block', margin: 'auto' }} />
+          </span>
+        </div>
+        <SkipForward className="w-6 h-6 cursor-pointer" onClick={() => alert('This feature will be added soon.')} />
+        <SkipForward className="w-6 h-6 cursor-pointer" onClick={() => alert('This feature will be added soon.')} />
+        <span className="ml-6 text-base font-mono text-white">03:12:37 (15-Jun-2025)</span>
+        <span className="ml-6 text-base font-mono text-white">1x</span>
         <div className="flex-1" />
-        <Volume2 className="w-4 h-4 opacity-70 mr-2" />
-        <span className="text-xs text-[#A1A1AA]">1x</span>
+        <Clock className="w-6 h-6 cursor-pointer" onClick={() => alert('This feature will be added soon.')} />
       </div>
 
       {/* Timeline Header */}
@@ -103,8 +109,8 @@ export function IncidentTimeline({ incidents, onIncidentSelect }: IncidentTimeli
               {/* Incidents for this camera */}
               {incidents.map((incident, idx) => {
                 const position = getPosition(incident.tsStart)
-                // Color logic and style for pixel-perfect match
-                let color = "bg-[#7C2D12] border-[#B45309] text-[#FDE68A]"; // default: Unauthorised Access
+              
+                let color = "bg-[#7C2D12] border-[#B45309] text-[#FDE68A]";
                 let icon = <AlertTriangle className="w-3.5 h-3.5 text-[#F59E42]" />;
                 let label = incident.type;
                 let pillClass = "";

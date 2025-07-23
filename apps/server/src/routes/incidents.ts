@@ -23,7 +23,7 @@ router.get('/incidents', async (req, res) => {
       },
     });
 
-    // Ensure all incidents have secondaryThumbnailUrl in the response
+   
     res.json({
       incidents: incidents.map((i: Incident & { camera: Camera | null }) => ({
         ...i,
