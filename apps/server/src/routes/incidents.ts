@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { z } from 'zod';
 import prisma from '../lib/prisma';
 import { getIncidentsSchema, resolveIncidentSchema } from '../types/zod-schemas';
+import { type Incident, type Camera } from '@prisma/client';
 
 const router = Router();
 
@@ -23,7 +24,12 @@ router.get('/incidents', async (req, res) => {
     });
 
     // Ensure all incidents have secondaryThumbnailUrl in the response
-    res.json({ incidents: incidents.map(i => ({ ...i, secondaryThumbnailUrl: i.secondaryThumbnailUrl || null })) });
+    res.json({
+      incidents: incidents.map((i: Incident & { camera: Camera | null }) => ({
+        ...i,
+        secondaryThumbnailUrl: i.secondaryThumbnailUrl || null,
+      })),
+    });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return res.status(400).json({ error: error.issues });
