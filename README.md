@@ -28,7 +28,7 @@
 1.  **Clone the repository:**
 
     ```bash
-    git clone https://github.com/your-username/securesight.git
+    git clone https://github.com/sangeeth-606/securesight.git
     cd securesight
     ```
 
